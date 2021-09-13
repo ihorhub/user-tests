@@ -18,7 +18,6 @@ module.exports = {
           WRONG_EMAIL_OR_PASS.code
         )
       }
-
       await compare(password, user.password)
 
       req.user = user

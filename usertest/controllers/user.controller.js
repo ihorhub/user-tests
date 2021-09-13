@@ -1,24 +1,8 @@
-const { userService } = require('../services'),
-const {
-  errors: { CREATE_BODY }
-} = require('../error'),
-const { hash } = require('../helper/password.helper'),
+const { userService } = require('../services')
+
+const { hash } = require('../helper/password.helper')
 
 module.exports = {
-  createUser: async (req, res, next) => {
-    try {
-      const password = await hash(req.body.password)
-
-      Object.assign(req.body, { password })
-
-      const create = await userService.insertUser(req.body)
-
-      res.status(CREATE_BODY).json(create)
-    } catch (e) {
-      next(e)
-    }
-  },
-
   updateUsers: async (req, res, next) => {
     try {
       const { userId } = req.params

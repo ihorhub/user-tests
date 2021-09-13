@@ -16,6 +16,7 @@ const { userRouter, authRouter, testRouter } = require('./routes')
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
 app.use('/test', carRouter)
+
 app.use('*', (err, req, res, next) => {
   res.status(err.code || 500).json({
     message: err.message,
