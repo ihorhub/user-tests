@@ -9,6 +9,10 @@ module.exports = (client, DataTypes) => {
         autoIncrement: true
       },
       ans: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      ans_2: {
         type: DataTypes.STRING,
         allowNull: false
       }

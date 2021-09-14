@@ -13,7 +13,11 @@ userRouter.post(
   userService.insertAnswer
 )
 
-userRouter.get('/answer', userService.findUserById)
+userRouter.get(
+  '/answer',
+  userMiddlewares.testValidMiddleware.joiTestValid,
+  userService.findUserById
+)
 userRouter.get('/list', userService.findTests)
 
 module.exports = userRouter

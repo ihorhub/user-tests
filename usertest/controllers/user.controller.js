@@ -1,6 +1,5 @@
 const { userService } = require('../services')
 const { ErrorHandler, errors } = require('../error')
-con
 
 module.exports = {
   updateUsers: async (req, res, next) => {
