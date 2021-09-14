@@ -1,6 +1,6 @@
 const { userService } = require('../services')
-
-const { hash } = require('../helper/password.helper')
+const { ErrorHandler, errors } = require('../error')
+con
 
 module.exports = {
   updateUsers: async (req, res, next) => {
@@ -9,9 +9,33 @@ module.exports = {
       const user = req.body
       await userService.updateUser(user, userId)
 
-      res.json({
-        message: 'Updated',
-      })
+      res.json(ErrorHandler(errors.UPDATE))
+    } catch (e) {
+      next(e)
+    }
+  },
+  insertAnswer: async (req, res, next) => {
+    try {
+      const user = req.body
+      await userService.insertAnswer(user)
+      res.json(errors.CREATE_BODY)
+    } catch (e) {
+      next(e)
+    }
+  },
+
+  getDescription: async (req, res, next) => {
+    try {
+      const desc = await userService.getDesc()
+      res.json(desc)
+    } catch (e) {
+      next(e)
+    }
+  },
+  getAllTestList: async (req, res, next) => {
+    try {
+      const list = await userService.findTests()
+      res.json(list)
     } catch (e) {
       next(e)
     }
@@ -19,7 +43,10 @@ module.exports = {
 
   getUserById: async (req, res, next) => {
     try {
-      res.json(req.user)
+      const { userId } = req.params
+
+      const user = await userService.findUserById(userId)
+      res.json(user)
     } catch (e) {
       next(e)
     }
@@ -27,18 +54,18 @@ module.exports = {
 
   getUsersWithTest: async (req, res, next) => {
     try {
-      const { limit = 10, page = 1, ...where } = req.query
+      const { limit = 1, page = 1, ...where } = req.query
       const offset = limit * (page - 1)
 
-      const UsersWithCars = await userService.findUsersWithTest(
+      const UserWithTests = await userService.findUserWithTest(
         where,
         +limit,
         +offset
       )
 
-      res.json(UsersWithCars)
+      res.json(UserWithTests)
     } catch (e) {
       next(e)
     }
-  },
+  }
 }

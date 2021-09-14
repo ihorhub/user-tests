@@ -3,7 +3,7 @@ const {
   ErrorHandler,
   errors: { WRONG_EMAIL_OR_PASS },
 } = require('../../error')
-const { findUserByParams } = require('../services/user.service')
+const { findUserByParams } = require('../../services/user.service')
 
 module.exports = {
   findUserParam: async (req, res, next) => {

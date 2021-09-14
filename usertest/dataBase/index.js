@@ -1,14 +1,15 @@
+const Sequelize = require('sequelize')
+
 const fs = require('fs')
 const path = require('path')
-const { Sequelize, DataTypes } = require('sequelize')
 
 module.exports = (() => {
   let instance
 
   const initConnection = () => {
-    const client = new Sequelize('usersTest', 'root', '2203', {
+    const client = new Sequelize('usersTest', 'root', 'parol', {
       host: 'localhost',
-      dialect: 'mysql',
+      dialect: 'mysql'
     })
 
     const models = {}
@@ -27,7 +28,7 @@ module.exports = (() => {
 
     return {
       setModels: () => getModels(),
-      getModel: (modelName) => models[modelName],
+      getModel: (modelName) => models[modelName]
     }
   }
 
@@ -37,6 +38,6 @@ module.exports = (() => {
         instance = initConnection()
       }
       return instance
-    },
+    }
   }
 })()

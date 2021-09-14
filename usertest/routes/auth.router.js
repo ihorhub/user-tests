@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { authMiddlewares, userMiddlewares } = require('../middlewares')
-const { authController, userController } = require('../controllers')
+const { authController } = require('../controllers')
 
 const authRouter = Router()
 
@@ -12,7 +12,8 @@ authRouter.post(
 )
 authRouter.post('/login', authMiddlewares.isPasswordOk, authController.login)
 
-authRouter.get(
+//** state 3 if checkbox " disagree to start" */
+authRouter.post(
   '/logout',
   authMiddlewares.checkAccessToken,
   authController.logout

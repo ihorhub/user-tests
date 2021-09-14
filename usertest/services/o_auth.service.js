@@ -1,7 +1,7 @@
 const db = require('../dataBase').getInstance()
 
 module.exports = {
-  createToken: (tokenPair) => {
+  createToken: (token) => {
     const OAuthModel = db.getModel('O_Auth')
 
     return OAuthModel.create(token)

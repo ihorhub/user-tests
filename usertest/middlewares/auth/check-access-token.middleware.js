@@ -34,10 +34,7 @@ module.exports = async (req, res, next) => {
         errors.NOT_VALID_TOKEN.code
       )
     }
-
-    // if (userWithToken.id !== +req.params.userId) {
-    //   throw new Error('PERMOISSION')
-    // }
+   
 
     req.user = userWithToken
 

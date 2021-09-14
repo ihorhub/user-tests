@@ -3,7 +3,7 @@ const db = require('../../dataBase').getInstance()
 const {
   ErrorHandler,
   errors: { NOT_VALID_BODY, WRONG_EMAIL_OR_PASS },
-} = require('../error')
+} = require('../../error')
 
 module.exports = {
   checkIsRegisterEmail: async (req, res, next) => {

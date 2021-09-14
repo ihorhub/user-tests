@@ -5,29 +5,30 @@ module.exports = (client, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
+        allowNull: false
+      }
     },
     {
       tableName: 'users',
-      timestamps: false,
+      timestamps: false
     }
   )
-  // const Test = require('./Test')(client, DataTypes)
-  // User.hasMany(Test, { foreignKey: 'user_id', onDelete: 'cascade' })
+
+  const Test = require('./Test')(client, DataTypes)
+  User.hasMany(Test, { foreignKey: 'user_id', onDelete: 'cascade' })
 
   return User
 }
